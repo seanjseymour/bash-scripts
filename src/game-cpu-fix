@@ -33,25 +33,32 @@ declare showOutput=true
 declare verbose=false
 
 # Get the options
-while getopts ":dhpqsv" option; do
+while getopts "hqvd:p:s:" option; do
    case $option in
       d) # Drive letter
-         declare drive=$OPTARG;;
+         drive=${OPTARG}
+         ;;
       h) # display Help
          Help
-         exit;;
+         exit
+         ;;
       p) # Process name / regex
-         declare procName=$OPTARG;;
+         procName=${OPTARG}
+         ;;
       q) # Quiet mode
-         showOutput=false;;
+         showOutput=false
+         ;;
       s) # Seconds to sleep
-         declare -i secsToSleep=$OPTARG;;
+         declare -i secsToSleep=${OPTARG}
+         ;;
       v) # Verbose mode
-         verbose=true;;
-      \?) # Invalid option
+         verbose=true
+         ;;
+      *) # Invalid option
          echo "Error: Invalid option"
          Help
-         exit;;
+         exit
+         ;;
    esac
 done
 
